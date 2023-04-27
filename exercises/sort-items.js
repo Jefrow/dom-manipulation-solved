@@ -43,7 +43,7 @@ const sortData = (dir) => {
   const newArr = Array.from(allItems); 
   const main = document.getElementById('main'); 
   if(dir === 'desc') {
-    newArr.sort().reverse(function(a,b) {
+    newArr.sort(function(a,b) {
       if(a.getAttribute('id') > b.getAttribute('id')) {
         return -1;
       }
