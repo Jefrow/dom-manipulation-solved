@@ -38,3 +38,62 @@
  */
 
 // Your code goes here...
+
+const cardContainer = document.querySelector('.cardsContainer'); 
+let storageArr = localStorage.getItem('Favorites');
+let favArr; 
+window.onload = () => {
+  if(storageArr) {
+    favArr = storageArr.split(',')
+    favArr.map((id) => updateCard(id))
+    console.log(favArr)
+  } else {
+    favArr = [];
+    console.log(favArr) 
+  }
+}
+ 
+const clicked = (e) => {
+  const item = e.target; 
+  if (Array.from (item.classList).includes('card')) {
+    if(favArr.includes(item.id)){
+      rmFav(item.id)
+      updateCard(item.id)
+    } else {
+      addFav(item.id)
+      updateCard(item.id)
+    }
+  }
+}
+
+const addFav = (id) => {
+  favArr.push(id)
+  let Favorites = favArr.toString()
+    .replace('[', '')
+    .replace(']', '')
+  localStorage.setItem('Favorites', Favorites); 
+  console.log(favArr); 
+}
+
+const rmFav = (id) => {
+  favArr.splice(favArr.indexOf(id),1).join(','); 
+  let Favorites = favArr.toString()
+    .replace('[', '')
+    .replace(']', '')
+  localStorage.setItem('Favorites', Favorites);
+  console.log(favArr);
+}
+
+const updateCard = (id) => {
+  storageArr = localStorage.getItem('Favorites').split(',');
+  let card = document.getElementById(id) 
+  if(storageArr.includes(id)){
+    card.style.backgroundColor = 'red'
+    card.setAttribute('data-fav', 'true')
+  } else {
+    card.style.backgroundColor = 'white'
+    card.setAttribute('data-fav', 'false')
+  }
+}
+
+cardContainer.addEventListener('click', clicked);
