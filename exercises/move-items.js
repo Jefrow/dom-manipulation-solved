@@ -50,7 +50,7 @@ const favs = document.getElementById('favs')
 const updateCollections = (id, direction) => {
   let element = document.getElementById(id)
   let parent; 
-  if (element.parentNode.id === 'main' && direction === 'toFavs') {
+  if(element.parentNode.id === 'main' && direction === 'toFavs') {
     parent = document.getElementById('favs')
     element.innerHTML = `
       <i class='fa-solid fa-heart-crack' ></i>
@@ -87,7 +87,7 @@ allItems.forEach((item) => {
     const parentId = e.target.parentNode.id
     const id = e.target.id;
     let direction; 
-    if( parentId === 'main' ){
+    if( parentId === 'main' ) {
        direction = 'toFavs'
     } else {
        direction = 'toMain'

@@ -44,11 +44,11 @@ const sortData = (dir) => {
   const main = document.getElementById('main'); 
   if(dir === 'desc') {
     newArr.sort().reverse(function(a,b) {
-      if(a.getAttribute('id') > b.getAttribute('id')){
+      if(a.getAttribute('id') > b.getAttribute('id')) {
         return -1;
       }
     })
-  }else {
+  } else {
     newArr.sort(function(a,b) {
       if(a.getAttribute('id') < b.getAttribute('id')) {
         return -1;

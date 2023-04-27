@@ -46,17 +46,15 @@ window.onload = () => {
   if(storageArr) {
     favArr = storageArr.split(',')
     favArr.map((id) => updateCard(id))
-    console.log(favArr)
   } else {
     favArr = [];
-    console.log(favArr) 
   }
 }
  
 const clicked = (e) => {
   const item = e.target; 
-  if (Array.from (item.classList).includes('card')) {
-    if(favArr.includes(item.id)){
+  if(Array.from (item.classList).includes('card')) {
+    if(favArr.includes(item.id)) {
       rmFav(item.id)
       updateCard(item.id)
     } else {
@@ -72,7 +70,6 @@ const addFav = (id) => {
     .replace('[', '')
     .replace(']', '')
   localStorage.setItem('Favorites', Favorites); 
-  console.log(favArr); 
 }
 
 const rmFav = (id) => {
@@ -81,13 +78,12 @@ const rmFav = (id) => {
     .replace('[', '')
     .replace(']', '')
   localStorage.setItem('Favorites', Favorites);
-  console.log(favArr);
 }
 
 const updateCard = (id) => {
   storageArr = localStorage.getItem('Favorites').split(',');
   let card = document.getElementById(id) 
-  if(storageArr.includes(id)){
+  if(storageArr.includes(id)) {
     card.style.backgroundColor = 'red'
     card.setAttribute('data-fav', 'true')
   } else {
