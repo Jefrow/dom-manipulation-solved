@@ -42,14 +42,6 @@
 const cardContainer = document.querySelector('.cardsContainer'); 
 let storageArr = localStorage.getItem('Favorites');
 let favArr; 
-window.onload = () => {
-  if(storageArr) {
-    favArr = storageArr.split(',')
-    favArr.map((id) => updateCard(id))
-  } else {
-    favArr = [];
-  }
-}
  
 const clicked = (e) => {
   const item = e.target; 
@@ -92,4 +84,12 @@ const updateCard = (id) => {
   }
 }
 
+window.onload = () => {
+  if(storageArr) {
+    favArr = storageArr.split(',')
+    favArr.map((id) => updateCard(id))
+  } else {
+    favArr = [];
+  }
+}
 cardContainer.addEventListener('click', clicked);
