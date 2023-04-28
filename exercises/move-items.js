@@ -49,20 +49,15 @@ const favs = document.getElementById('favs')
 // Your code goes here
 const updateCollections = (id, direction) => {
   let element = document.getElementById(id)
-  let parent; 
-  if(element.parentNode.id === 'main' && direction === 'toFavs') {
-    parent = document.getElementById('favs')
-    element.innerHTML = `
-      <i class='fa-solid fa-heart-crack' ></i>
-      Card Title ${id}
-    `
-  } else {
-    parent = document.getElementById('main')
-    element.innerHTML = `
-      <i class="fa-solid fa-heart-circle-plus"></i>
-      Card Title ${id}
-    `
-  }
+  const value = element.parentNode.id == 'main' && direction === 'toFavs' 
+    ? ['fa-heart-crack' , 'favs'] 
+    : ['fa-heart-circle-plus','main'] ; 
+  parent = document.getElementById(value[1])
+  element.innerHTML = `
+    <i class="fa-solid ${value[0]}"></i>
+    Card Title ${id}
+  `
+
   parent.appendChild(element);
 }
 
@@ -86,12 +81,7 @@ allItems.forEach((item) => {
   item.addEventListener('click', e => {
     const parentId = e.target.parentNode.id
     const id = e.target.id;
-    let direction; 
-    if( parentId === 'main' ) {
-       direction = 'toFavs'
-    } else {
-       direction = 'toMain'
-    }
+    let direction = parentId === 'main' ? 'toFavs' : 'toMain' 
     updateCollections(id, direction);
   })
 })

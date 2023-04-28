@@ -75,13 +75,11 @@ const rmFav = (id) => {
 const updateCard = (id) => {
   storageArr = localStorage.getItem('Favorites').split(',');
   let card = document.getElementById(id) 
-  if(storageArr.includes(id)) {
-    card.style.backgroundColor = 'red'
-    card.setAttribute('data-fav', 'true')
-  } else {
-    card.style.backgroundColor = 'white'
-    card.setAttribute('data-fav', 'false')
-  }
+  const params = storageArr.includes(id) 
+    ? ['red', 'true']
+    : ['white', 'false']
+  card.style.backgroundColor = params[0]
+  card.setAttribute('data-fav', params[1])
 }
 
 window.onload = () => {

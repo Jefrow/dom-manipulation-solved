@@ -42,19 +42,17 @@ const btnList = document.querySelectorAll('.sortBtn');
 const sortData = (dir) => {
   const newArr = Array.from(allItems); 
   const main = document.getElementById('main'); 
-  if(dir === 'desc') {
-    newArr.sort(function(a,b) {
-      if(a.getAttribute('id') > b.getAttribute('id')) {
-        return -1;
-      }
-    })
-  } else {
-    newArr.sort(function(a,b) {
-      if(a.getAttribute('id') < b.getAttribute('id')) {
-        return -1;
-      }
-    })
-  } 
+
+  newArr.sort(function(a,b) {
+    if(a.getAttribute('id') > b.getAttribute('id')) {
+      return dir === 'desc' ? -1 : 1 ;
+    } else if (a.getAttribute('id') > b.getAttribute('id')) {
+      return dir === 'desc' ? -1 : 1; 
+    } else  {
+      return 0; 
+    }
+  })
+
   newArr.forEach((item) => {
     main.append(item);
   })
